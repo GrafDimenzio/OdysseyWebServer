@@ -22,6 +22,15 @@
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Berlin
+      - TOKEN=SECURETOKEN
+      - SERVER=smoo
+      - PORT=1027
+      - UPDATEFREQUENCY=100
+      - UPDATEFLIPPEDPLAYERSFREQUENCY=-1
+      - ONLYREQUESTWHENNECESSARY=true
+      - SERVERNAME=My Odyssey Server
+      - ACCOUNTNAME=admin
+      - ACCOUNTPASSWORD=PASSWORD
     ports:
       - "8080:8080"
     volumes:
