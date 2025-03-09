@@ -1,0 +1,36 @@
+﻿services:
+  smoo:
+    image: ghcr.io/sanae6/smo-online-server:latest
+    container_name: smoo
+    networks:
+      - smoo
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+    ports:
+      - "1027:1027"
+    volumes:
+      - smoo:/data
+  
+  odysseywebserver:
+    image: ghcr.io/grafdimenzio/odysseywebserver:latest
+    container_name: odysseywebserver
+    networks:
+      - smoo
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+    ports:
+      - "8080:8080"
+    volumes:
+      - odysseywebserver:/data
+      
+      
+networks:
+  smoo:
+    
+volumes:
+  smoo:
+  odysseywebserver:

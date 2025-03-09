@@ -1,0 +1,57 @@
+﻿@using System.Globalization
+@using OdysseyWebServer.Helper
+<div style="position: relative; display: inline-block; height: 100%; max-height: 100%;">
+    <img id="mapImage"  
+        src="@($"images/map/{@Kingdom}.png")" 
+        alt="@Kingdom"
+        style="height: 100%; max-height: 100%; object-fit: contain; display: block;"/>
+
+    @foreach (var marker in new List<Marker>(_markers)) //This can throw an error if _marker is modified while looping through them. Unlikely but it happened once during testing so I'm creating a new List to prevent this
+    {
+        <div style=@($"position:absolute; " 
+                     + $"top: {CalculateRelative(marker.Position.Y)}%; " 
+                     + $"left: {CalculateRelative(marker.Position.X)}%; " 
+                     + $"transform: translate(-50%,-50%); " 
+                     + $"width: {Size}px; height: {Size}px; border-radius: 50%; ")>
+            <NavLink href="@($"/player/{marker.ID}")">
+                <img src="images/Sprite_Mario.png"
+                     style="@($"width: {Size}px; height: {Size}px; object-fit: cover; border-radius: 50%;")"
+                     alt="Mario's Head"/>
+                <div style=@($"position: absolute; top: -{Size}px; left: 50%; transform: translateX(-50%); font-size: 12px; color: white; background: rgba(0, 0, 0, 0.7); padding: 2px 5px; border-radius: 5px;")>
+                    @marker.Name
+                </div>
+            </NavLink>
+        </div>
+    }
+</div>
+
+@code {
+    public const int Size = 20;
+    
+    [Parameter] public string Kingdom { get; set; } = "Cap Kingdom";
+    private readonly List<Marker> _markers = new();
+
+    public void ClearAllMarker()
+    {
+        _markers.Clear();
+    }
+
+    public void AddMarker(Marker marker)
+    {
+        _markers.Add(marker);
+    }
+
+    public void Refresh()
+    {
+        InvokeAsync(StateHasChanged);
+    }
+
+    private string CalculateRelative(double number)
+    {
+        if (number < 0) number = 0;
+        if (number > 2048) number = 2048;
+
+        return (number / 2048 * 100).ToString(CultureInfo.InvariantCulture);
+    }
+
+}

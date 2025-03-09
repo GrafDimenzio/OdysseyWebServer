@@ -1,0 +1,178 @@
+﻿@page "/player/{PlayerId}"
+@implements IDisposable
+@using Microsoft.AspNetCore.Authorization
+@using OdysseyWebServer.Helper
+@using OdysseyWebServer.ServerCommunication
+@rendermode InteractiveServer
+@attribute [Authorize(Roles = "Administrator")]
+
+<PageTitle>@(_player?.Name ?? "Unknown Player") - @Configuration.ServerName</PageTitle>
+
+@if (_player == null)
+{
+    <p>Loading Player Data</p>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-6 p-3 border">
+            <h4>@_player.Name</h4>
+            <p>
+
+                (@_player.ID)
+                <br/>
+                Ip: @_player.IPv4
+            </p>
+
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <img src="@($"images/cap/{_player.Costume.Cap}.png")" alt="@_player.Costume.Cap" width="100" height="100"/>
+                <img src="@($"images/body/{_player.Costume.Body}.png")" alt="@_player.Costume.Body" width="100" height="100"/>
+            </div>
+
+            <p>
+                Map Position: @Cache.GetMapPosition(_player).ToString()
+                <br/>
+                World Position: @_player.Position.ToString()
+                <br/>
+                Rotation: @_player.Rotation.ToString()
+            </p>
+            <p>
+                Kingdom: @_player.Kingdom
+                <br/>
+                Stage: @_player.Stage
+                <br/>
+                Scenario: @_player.Scenario
+            </p>
+
+            <p>
+                GameMode: @_player.GameMode
+                <br/>
+                Tagged: @_player.Tagged
+                <br/>
+                Is2D: @_player.Is2D
+            </p>
+            
+            <label>
+                <input type="checkbox" @bind="Flip"/> Flip
+            </label>
+        </div>
+
+        <div class="col-md-6 p-3 border">
+            <h4>Map</h4>
+            <div style="height: 512px">
+                <MapComponent @ref="_mapComponent" Kingdom="@_player.Kingdom"/>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-6 p-3 border">
+            <h4>Capture</h4>
+            @if (!string.IsNullOrEmpty(_player.Capture))
+            {
+                <img  src="@($"images/capture/{_player.Capture}.png")" alt="@_player.Capture" width="100" height="100"/>
+            }
+        </div>
+        
+        <div class="col-md-6 p-3 border">
+            <h4>Commands</h4>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <button @onclick="OnRejoin" class="btn-primary">Rejoin</button>
+                <button @onclick="OnBan" class="btn-primary">Ban</button>
+                <button @onclick="OnCrash" class="btn-primary">Crash</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="text-center">@NotificationMessage</div>
+}
+
+@code {
+    [Parameter] public string? PlayerId { get; set; }
+    private Player? _player;
+    private MapComponent? _mapComponent;
+
+    private bool _flip;
+
+    private bool Flip
+    {
+        get => _flip;
+        set
+        {
+            _flip = value;
+            OnFlip();
+        }
+    }
+    
+    private bool ShowNotification = false;
+    private string? NotificationMessage = "";
+    private int _timeState = 0;
+    
+    protected override void OnInitialized()
+    {
+        UpdatePlayers(Cache.Players);
+        UpdateFlippedPlayers(Cache.FlippedPlayers);
+        Cache.OnUpdatePlayers += UpdatePlayers;
+        Cache.OnUpdateFlippedPlayers += UpdateFlippedPlayers;
+    }
+
+    private void UpdatePlayers(List<Player> players)
+    {
+        _player = players.FirstOrDefault(x => x.ID.ToString() == PlayerId);
+        if (_player != null && _mapComponent != null)
+        {
+            _mapComponent.ClearAllMarker();
+            _mapComponent.AddMarker(Marker.FromPlayer(_player));
+            _mapComponent.Refresh();
+        }
+        InvokeAsync(StateHasChanged);
+    }
+
+    private void UpdateFlippedPlayers(List<string> players)
+    {
+        _flip = players.Any(x => x == _player?.ID.ToString());
+        InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose()
+    {
+        Cache.OnUpdatePlayers -= UpdatePlayers;
+    }
+
+    private async void OnFlip()
+    {
+        var response = await Cache.SetPlayerFlipState(_player!.ID.ToString(), Flip);
+        ShowTemporaryNotification(string.Join("\n", response));
+    }
+
+    private async void OnRejoin()
+    {
+        var response = string.Join("\n",await RequestHandler.ExecuteCommand("rejoin " + _player.ID));
+        ShowTemporaryNotification(response);
+    }
+    
+    private async void OnBan()
+    {
+        var response = await Cache.BanPlayer(_player!.ID.ToString());
+        ShowTemporaryNotification(response);
+    }
+
+    private async void OnCrash()
+    {
+        var response = string.Join("\n",await RequestHandler.ExecuteCommand("crash " + _player.ID));
+        ShowTemporaryNotification(response);
+    }
+    
+    private async void ShowTemporaryNotification(string message)
+    {
+        NotificationMessage = message;
+        StateHasChanged();
+
+        _timeState++;
+        await Task.Delay(3000);
+        _timeState--;
+        if (_timeState > 0) return;
+        NotificationMessage = null;
+        StateHasChanged();
+    }
+}

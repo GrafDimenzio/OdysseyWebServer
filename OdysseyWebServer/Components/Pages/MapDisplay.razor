@@ -1,0 +1,77 @@
+﻿@page "/map"
+@implements IDisposable
+@using Microsoft.AspNetCore.Authorization
+@using OdysseyWebServer.Helper
+@using OdysseyWebServer.ServerCommunication
+@rendermode InteractiveServer
+@attribute [Authorize(Roles = "Administrator")]
+
+<PageTitle>Map - @Configuration.ServerName</PageTitle>
+
+<h3>Map</h3>
+
+<div style="display: flex; align-items: center; gap: 10px;">
+    <select class="form-select-sm" @onchange="OnKingdomChanged">
+        @foreach (var kingdom in Utils.Kingdoms)
+        {
+            if (kingdom.KingdomName == "Odyssey") continue;
+            <option value="@kingdom.KingdomName">@kingdom.KingdomName</option>
+        }
+    </select>
+    
+    <button @onclick="OnButtonClick" class="btn-primary">Send all to kingdom</button>
+
+    <label>
+        <input type="checkbox" @bind="OriginalScale"/> Original Scale
+    </label>
+</div>
+
+<div style=@($"height: {(OriginalScale ? "2048" : "1024")}px")>
+    <MapComponent @ref="_mapComponent" Kingdom="@Kingdom" />
+</div>
+
+@code {
+    private bool OriginalScale { get; set; } = false;
+    private string Kingdom { get; set; } = "Cap Kingdom";
+
+    private Vector2 pos = new ();
+    
+    private MapComponent? _mapComponent;
+
+    protected override void OnInitialized()
+    {
+        UpdatePlayers(Cache.Players);
+        Cache.OnUpdatePlayers += UpdatePlayers;
+    }
+
+    private void UpdatePlayers(List<Player> players)
+    {
+        if(_mapComponent == null) return;
+        _mapComponent.ClearAllMarker();
+        
+        foreach (var player in players)
+        {
+            if (player.Kingdom != Kingdom) continue;
+            _mapComponent.AddMarker(Marker.FromPlayer(player));
+        }
+        _mapComponent.Refresh();
+        InvokeAsync(StateHasChanged);
+    }
+    
+    private void OnKingdomChanged(ChangeEventArgs e)
+    {
+        Kingdom = e.Value?.ToString() ?? "Cap Kingdom";
+        UpdatePlayers(Cache.Players);
+    }
+    
+    private async Task OnButtonClick()
+    {
+        if (!Utils.TeleportNames.TryGetValue(Kingdom, out var kingdomName)) return;
+        await RequestHandler.ExecuteCommand("sendall " + kingdomName);
+    }
+    
+    public void Dispose()
+    {
+        Cache.OnUpdatePlayers -= UpdatePlayers;
+    }
+}

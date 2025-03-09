@@ -1,0 +1,405 @@
+﻿@page "/dashboard"
+@using OdysseyWebServer.Helper
+@using OdysseyWebServer.Models.ViewModels
+@using OdysseyWebServer.ServerCommunication
+@implements IDisposable
+@rendermode InteractiveServer
+
+<PageTitle>Dashboard - @Configuration.ServerName</PageTitle>
+
+<div class="container justify-content-center align-items-center"
+     style="max-width: 1300px; overflow: auto;">
+    <h3>Dashboard</h3>
+    <div class="row">
+        <div class="col-md-4 p-3 border">
+            <h3>Server Information</h3>
+            Host: @Configuration.Server:@Configuration.Port
+            <br/>
+            Players: @_players.Count
+            <br/>
+            @if (_players.Count > 0)
+            {
+                <label>PlayerList:</label>
+                <ul>
+                    @foreach (var ply in _players)
+                    {
+                        <li><a href="@($"/player/{ply.ID}")">@ply.Name</a></li>
+                    }
+                </ul>
+            }
+            Server Permissions:
+            <ul>
+                @foreach (var perm in Cache.Permissions)
+                {
+                    <li>@perm</li>
+                }
+            </ul>
+        </div>
+        <div class="col-md-4 p-3 border">
+            <div class="d-flex justify-content-between align-items-center">
+                <h3>Ban List</h3>
+                <button @onclick="OnRefreshBanList" class="btn btn-link p-0 border-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z"/>
+                        <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466"/>
+                    </svg>
+                </button>
+            </div>
+            @if (Cache.BanList[1].Count > 0)
+            {
+                <h4>Banned IP's</h4>
+                <ul class="ps-0">
+                    @foreach (var ban in Cache.BanList[1])
+                    {
+                        <li class="list-group-item d-flex justify-content-between align-items-center border-0">
+                            @ban
+                            <button @onclick="() => OnUnBan(1,ban)" class="btn btn-link text-danger p-0 border-0">
+                                <svg @onclick="() => { }" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+                                </svg>
+                            </button>
+                        </li>
+                    }
+                </ul>
+            }
+            @if (Cache.BanList[2].Count > 0)
+            {
+                <h4>Banned ID's</h4>
+                <ul class="ps-0">
+                    @foreach (var ban in Cache.BanList[2])
+                    {
+                        <li class="list-group-item d-flex justify-content-between align-items-center border-0">
+                            @ban
+                            <button @onclick="() => OnUnBan(2,ban)" class="btn btn-link text-danger p-0 border-0">
+                                <svg @onclick="() => { }" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+                                </svg>
+                            </button>
+                        </li>
+                    }
+                </ul>
+            }
+            @if (Cache.BanList[3].Count > 0)
+            {
+                <h4>Banned Stages</h4>
+                <ul class="ps-0">
+                    @foreach (var ban in Cache.BanList[3])
+                    {
+                        <li class="list-group-item d-flex justify-content-between align-items-center border-0">
+                            @ban
+                            <button @onclick="() => OnUnBan(3,ban)" class="btn btn-link text-danger p-0 border-0">
+                                <svg @onclick="() => { }" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+                                </svg>
+                            </button>
+                        </li>
+                    }
+                </ul>
+            }
+            <br/>
+            
+            <h4>Ban Stage</h4>
+            <label>Kingdom: </label>
+            <select class="form-select" @onchange="OnBanStageChangeKingdom">
+                @foreach (var kingdom in Utils.Kingdoms)
+                {
+                    <option value="@kingdom.KingdomName">@kingdom.KingdomName</option>
+                }
+            </select>
+            
+            <label>Stage: </label>
+            <select class="form-select" @bind="_banStage">
+                <option value="@_currentHomeStage">@_currentHomeStage</option>
+                @foreach (var stage in Utils.Kingdoms.First(x => x.KingdomName == _banStageCurrentKingdom).SubAreas.Select(x => x.SubAreaName))
+                {
+                    <option value="@stage">@stage</option>
+                }
+            </select>
+            <button class="btn btn-primary m-1" @onclick="OnBanStage">Ban</button>
+        </div>
+        <div class="col-md-4 p-3 border">
+            <h3>Commands</h3>
+            @if (_commandMessage != null)
+            {
+                <p>
+                    > @_commandMessage
+                </p>
+            }
+            <div class="border m-1 p-3">
+                <div class="row m-1">
+                    <div class="col-md-6">
+                        <button @onclick="OnCrashAll" class="btn btn-primary">Crash All</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button @onclick="OnRejoinAll" class="btn btn-primary">Rejoin All</button>
+                    </div>
+                </div>
+                <div class="row m-1">
+                    <div class="col-md-6">
+                        <button @onclick="OnRestartServer" class="btn btn-primary">Restart Server</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button @onclick="@OnLoadSettings" class="btn btn-primary">Load Settings</button>
+                    </div>
+                </div>
+            </div>
+
+            <h4>Flip POV</h4>
+            <div class="row m-1 p-3 border">
+                <div class="col-md-4">
+                    <button @onclick="OnPovSelf" class="btn btn-primary">Self</button>
+                </div>
+                <div class="col-md-4">
+                    <button @onclick="OnPovOther" class="btn btn-primary">Other</button>
+                </div>
+                <div class="col-md-4">
+                    <button @onclick="OnPovBoth" class="btn btn-primary">Both</button>
+                </div>
+            </div>
+
+            <h4>Scenario Merging</h4>
+            <div class="row m-2 p-3 border">
+                <div class="col-md-6">
+                    <button @onclick="OnMergeEnable" class="btn btn-primary">Enable</button>
+                </div>
+                <div class="col-md-6">
+                    <button @onclick="OnMergeDisable" class="btn btn-primary">Disable</button>
+                </div>
+            </div>
+
+            <h4>Set max players</h4>
+            <div class="m-1 p-3 border">
+                <div class="input-group">
+                    <input @bind="_maxPlayers" @bind:event="oninput" @onkeydown="OnKeyDownMaxPlayer" type="number" class="form-control" placeholder="Max players count"/>
+                    <button @onclick="OnSetMaxPlayers" class="btn btn-primary">Set</button>
+                </div>
+            </div>
+            <h4>Send Player</h4>
+            <div class="row m-2 p-3 border">
+                <EditForm Model="_model" FormName="SendPlayerForm" OnValidSubmit="OnSendPlayer">
+                    <DataAnnotationsValidator />
+                    <div class="m-1">
+                        <label>Player:</label>
+                        <InputSelect @bind-Value="_model.Player" placeholder="Player Name" class="form-control">
+                            <option value="*">All</option>
+                            @foreach (var ply in _players)
+                            {
+                                <option value="@ply.ID.ToString()">@ply.Name</option>
+                            }
+                        </InputSelect>
+                        <ValidationMessage For="() => _model.Player"></ValidationMessage>
+                    </div>
+
+                    <div class="m-1">
+                        <label>Kingdom:</label>
+                        <select @onchange="OnSendChangedKingdom" placeholder="Kingdom Name" class="form-control">
+                            @foreach (var kingdom in Utils.Kingdoms)
+                            {
+                            <option value="@kingdom.KingdomName">@kingdom.KingdomName</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="m-1">
+                        <label>Stage:</label>
+                        <InputSelect @bind-Value="_model.Stage" placeholder="Stage Name" class="form-control">
+                            <option value="@_sendCurrentHomeStage">@_sendCurrentHomeStage</option>
+                            @foreach (var subArea in Utils.Kingdoms.FirstOrDefault(x => x.KingdomName == _sendStageCurrentKingdom).SubAreas)
+                            {
+                                <option value="@subArea.SubAreaName">@subArea.SubAreaName</option>
+                            }
+                        </InputSelect>
+                        <ValidationMessage For="() => _model.Stage"></ValidationMessage>
+                    </div>
+
+                    <div class="m-1">
+                        <label>Scenario:</label>
+                        <InputNumber @bind-Value="_model.Scenario" placeholder="Scenario Id" class="form-control"/>
+                        <ValidationMessage For="() => _model.Scenario"></ValidationMessage>
+                    </div>
+                    <div class="m-1">
+                        <button type="submit" class="btn btn-primary">Send</button>
+                    </div>
+                </EditForm>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@code {
+    private List<Player> _players = new();
+    private string? _commandMessage;
+    private int _timerState = 0;
+    private int _maxPlayers = 0;
+
+    private string _banStageCurrentKingdom = "Odyssey";
+    private string _banStage = "HomeShipInsideStage";
+    private string? _currentHomeStage = "HomeShipInsideStage";
+
+    private SendPlayerViewModel _model = new();
+    private string _sendStageCurrentKingdom = "Odyssey";
+    private string? _sendCurrentHomeStage = "HomeShipInsideStage";
+    
+    
+    protected override void OnInitialized()
+    {
+        Cache.OnUpdatePlayers += OnUpdatePlayers;
+        OnUpdatePlayers(Cache.Players);
+    }
+
+    private void OnUpdatePlayers(List<Player> players)
+    {
+        _players = players;
+        InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose()
+    {
+        Cache.OnUpdatePlayers -= OnUpdatePlayers;
+    }
+
+    private void OnSendChangedKingdom(ChangeEventArgs e)
+    {
+        _sendStageCurrentKingdom = e.Value?.ToString() ?? "Odyssey";
+        if (Utils.Kingdoms.Any(x => x.KingdomName == _sendStageCurrentKingdom))
+        {
+            var kingdom = Utils.Kingdoms.First(x => x.KingdomName == _sendStageCurrentKingdom);
+            _sendCurrentHomeStage = kingdom.MainStageName;
+            _model.Stage = kingdom.MainStageName;
+        }
+        else
+        {
+            _sendCurrentHomeStage = null;
+        }
+    }
+    
+    private async Task OnSendPlayer(EditContext obj)
+    {
+        _commandMessage = string.Join("\n", await RequestHandler.ExecuteCommand($"send {_model.Stage} {_model.Id} {_model.Scenario} {_model.Player}"));
+        ResetMessage();
+    }
+
+    private async Task OnBanStage()
+    {
+        await Cache.BanStage(_banStage);
+    }
+
+    private void OnBanStageChangeKingdom(ChangeEventArgs e)
+    {
+        _banStageCurrentKingdom = e.Value?.ToString() ?? "Odyssey";
+        if (Utils.Kingdoms.Any(x => x.KingdomName == _banStageCurrentKingdom))
+        {
+            var kingdom = Utils.Kingdoms.First(x => x.KingdomName == _banStageCurrentKingdom);
+            _currentHomeStage = kingdom.MainStageName;
+            _banStage = kingdom.MainStageName;
+        }
+        else
+        {
+            _currentHomeStage = null;
+            _banStage = "Invalid";
+        }
+    }
+
+    private async Task OnRefreshBanList()
+    {
+        await Cache.RefreshBans();
+        await InvokeAsync(StateHasChanged);
+    }
+    
+    private async Task OnUnBan(int id, string content)
+    {
+        await Cache.UnBan((BanType) id, content);
+    }
+
+    private async Task OnCrashAll()
+    {
+        foreach (var player in _players)
+        {
+            await RequestHandler.ExecuteCommand("crash " + player.ID);
+        }
+        
+        _commandMessage = "Crashed all Players";
+        ResetMessage();
+    }
+    
+    private async Task OnRejoinAll()
+    {
+        foreach (var player in _players)
+        {
+            await RequestHandler.ExecuteCommand("rejoin " + player.ID);
+        }
+
+        _commandMessage = "Rejoined all Players";
+        ResetMessage();
+    }
+
+    private async Task OnLoadSettings()
+    {
+        _commandMessage = string.Join("\n", await RequestHandler.ExecuteCommand("loadsettings"));
+        ResetMessage();
+    }
+    
+    private async Task OnRestartServer()
+    {
+        _commandMessage = string.Join("\n", await RequestHandler.ExecuteCommand("restartserver"));
+        ResetMessage();
+    }
+
+    private async Task OnPovSelf()
+    {
+        _commandMessage = string.Join("\n", await RequestHandler.ExecuteCommand("flip pov self"));
+        ResetMessage();
+    }
+    
+    private async Task OnPovOther()
+    {
+        _commandMessage = string.Join("\n", await RequestHandler.ExecuteCommand("flip pov others"));
+        ResetMessage();
+    }
+    
+    private async Task OnPovBoth()
+    {
+        _commandMessage = string.Join("\n", await RequestHandler.ExecuteCommand("flip pov both"));
+        ResetMessage();
+    }
+    
+    private async Task OnMergeEnable()
+    {
+        _commandMessage = string.Join("\n", await RequestHandler.ExecuteCommand("scenario merge true"));
+        ResetMessage();
+    }
+    
+    private async Task OnMergeDisable()
+    {
+        _commandMessage = string.Join("\n", await RequestHandler.ExecuteCommand("scenario merge false"));
+        ResetMessage();
+    }
+
+    private async void ResetMessage()
+    {
+        _timerState++;
+        await Task.Delay(5000);
+        _timerState--;
+        if (_timerState == 0)
+            _commandMessage = null;
+    }
+
+    private async Task OnSetMaxPlayers()
+    {
+        _commandMessage = string.Join("\n", await RequestHandler.ExecuteCommand("maxplayers " + _maxPlayers));
+        ResetMessage();
+    }
+
+    private async Task OnKeyDownMaxPlayer(KeyboardEventArgs obj)
+    {
+        if (obj.Key == "Enter")
+        {
+            await OnSetMaxPlayers();
+        }
+    }
+}

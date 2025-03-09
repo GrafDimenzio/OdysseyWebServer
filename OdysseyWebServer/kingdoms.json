@@ -1,0 +1,414 @@
+﻿[
+  {
+    "KingdomName": "Odyssey",
+    "MainStageName": "HomeShipInsideStage",
+    "Rotation": 0,
+    "Offset" : {
+      "X": 550,
+      "Y": 1800
+    },
+    "Scale": 0.6,
+    "SubAreas": []
+  },
+  {
+    "KingdomName": "Cap Kingdom",
+    "MainStageName": "CapWorldHomeStage",
+    "Rotation": 0.25,
+    "Offset" : {
+      "X": 38000,
+      "Y": 24100
+    },
+    "Scale": 31,
+    "SubAreas": [
+      {
+        "SubAreaName": "CapWorldTowerStage",
+        "Position": {
+          "X": 4400,
+          "Y": -3400
+        }
+      },
+      {
+        "SubAreaName": "FrogSearchExStage",
+        "Position": {
+          "X": -9690,
+          "Y": 9980
+        }
+      },
+      {
+        "SubAreaName": "RollingExStage",
+        "Position": {
+          "X": -7680,
+          "Y": 12500
+        }
+      },
+      {
+        "SubAreaName": "PushBlockExStage",
+        "Position": {
+          "X": 4900,
+          "Y": -6915
+        }
+      },
+      {
+        "SubAreaName": "PoisonWaveExStage",
+        "Position": {
+          "X": 7865,
+          "Y": -6875
+        }
+      }
+    ]
+  },
+  {
+    "KingdomName": "Cascade Kingdom",
+    "MainStageName": "WaterfallWorldHomeStage",
+    "Rotation": 0.25,
+    "Offset" : {
+      "X": 22500,
+      "Y": 19500
+    },
+    "Scale": 20.513,
+    "SubAreas": [
+      {
+        "SubAreaName": "WindBlowExStage",
+        "Position": {
+          "X": -585,
+          "Y": 4435
+        }
+      },
+      {
+        "SubAreaName": "TrexPoppunExStage",
+        "Position": {
+          "X": 4620,
+          "Y": 8270
+        }
+      },
+      {
+        "SubAreaName": "WanwanClashExStage",
+        "Position": {
+          "X": -10240,
+          "Y": -765
+        }
+      },
+      {
+        "SubAreaName": "CapAppearExStage",
+        "Position": {
+          "X": -5575,
+          "Y": -1670
+        }
+      },
+      {
+        "SubAreaName": "Lift2DExStage",
+        "Position": {
+          "X": 1000,
+          "Y": -3410
+        }
+      }
+    ]
+  },
+  {
+    "KingdomName": "Sand Kingdom",
+    "MainStageName": "SandWorldHomeStage",
+    "Rotation": 0.5,
+    "Offset" : {
+      "X": 30500,
+      "Y": 43500
+    },
+    "Scale": 41.026,
+    "SubAreas": [
+      {
+        "SubAreaName": "MeganeLiftExStage",
+        "Position": {
+          "X": 27230,
+          "Y": -11055
+        }
+      },
+      {
+        "SubAreaName": "SandWorldShopStage",
+        "Position": {
+          "X": 23085,
+          "Y": -11315
+        }
+      },
+      {
+        "SubAreaName": "SandWorldCostumeStage",
+        "Position": {
+          "X": 16990,
+          "Y": -9980
+        }
+      },
+      {
+        "SubAreaName": "SandWorldSlotStage",
+        "Position": {
+          "X": 21005,
+          "Y": -14065
+        }
+      },
+      {
+        "SubAreaName": "SandWorldRotateExStage",
+        "Position": {
+          "X": 18955,
+          "Y": -14175
+        }
+      },
+      {
+        "SubAreaName": "RocketFlowerExStage",
+        "Position": {
+          "X": 3200,
+          "Y": -11915
+        }
+      },
+      {
+        "SubAreaName": "SandWorldPressExStage",
+        "Position": {
+          "X": -8825,
+          "Y": -21235
+        }
+      },
+      {
+        "SubAreaName": "SandWorldSphinxExStage",
+        "Position": {
+          "X": -2980,
+          "Y": -33285
+        }
+      },
+      {
+        "SubAreaName": "SandWorldSecretStage",
+        "Position": {
+          "X": -10450,
+          "Y": -14400
+        }
+      },
+      {
+        "SubAreaName": "SandWorldMeganeExStage",
+        "Position": {
+          "X": -15650,
+          "Y": 250
+        }
+      },
+      {
+        "SubAreaName": "SandWorldKillerExStage",
+        "Position": {
+          "X": -31075,
+          "Y": 11705
+        }
+      },
+      {
+        "SubAreaName": "SandWorldPyramid000Stage",
+        "Position": {
+          "X": -23450,
+          "Y": -24734
+        }
+      },
+      {
+        "SubAreaName": "SandWorldPyramid001Stage",
+        "Position": {
+          "X": -23460,
+          "Y": -22585
+        }
+      },
+      {
+        "SubAreaName": "SandWorldUnderground000Stage",
+        "Position": {
+          "X": -23570,
+          "Y": -25125
+        }
+      },
+      {
+        "SubAreaName": "SandWorldUnderground001Stage",
+        "Position": {
+          "X": -26165,
+          "Y": -12765
+        }
+      }
+    ]
+  },
+  {
+    "KingdomName": "Lake Kingdom",
+    "MainStageName": "LakeWorldHomeStage",
+    "Rotation": 0,
+    "Offset" : {
+      "X": 23550,
+      "Y": 15000
+    },
+    "Scale": 14.872,
+    "SubAreas": [
+      {
+        "SubAreaName": "FrogPoisonExStage",
+        "Position": {
+          "X": 1760,
+          "Y": 5577
+        }
+      },
+      {
+        "SubAreaName": "GotogotonExStage",
+        "Position": {
+          "X": -15100,
+          "Y": 50
+        }
+      },
+      {
+        "SubAreaName": "LakeWorldShopStage",
+        "Position": {
+          "X": -19720,
+          "Y": -5200
+        }
+      },
+      {
+        "SubAreaName": "TrampolineWallCatchExStage",
+        "Position": {
+          "X": -17300,
+          "Y": -7950
+        }
+      },
+      {
+        "SubAreaName": "FastenerExStage",
+        "Position": {
+          "X": -15700,
+          "Y": -7150
+        }
+      }
+    ]
+  },
+  {
+    "KingdomName": "Wooded Kingdom",
+    "MainStageName": "ForestWorldHomeStage",
+    "Rotation": 0,
+    "Offset" : {
+      "X": 28800,
+      "Y": 34500
+    },
+    "Scale": 26.923,
+    "SubAreas": []
+  },
+  {
+    "KingdomName": "Cloud Kingdom",
+    "MainStageName": "CloudWorldHomeStage",
+    "Rotation": 0,
+    "Offset" : {
+      "X": 16550,
+      "Y": 18600
+    },
+    "Scale": 16.128,
+    "SubAreas": []
+  },
+  {
+    "KingdomName": "Lost Kingdom",
+    "MainStageName": "ClashWorldHomeStage",
+    "Rotation": 0,
+    "Offset" : {
+      "X": 15800,
+      "Y": 13350
+    },
+    "Scale": 16.641,
+    "SubAreas": []
+  },
+  {
+    "KingdomName": "Metro Kingdom",
+    "MainStageName": "CityWorldHomeStage",
+    "Rotation": 0,
+    "Offset" : {
+      "X": 22900,
+      "Y": 19800
+    },
+    "Scale": 22.334,
+    "SubAreas": []
+  },
+  {
+    "KingdomName": "Snow Kingdom",
+    "MainStageName": "SnowWorldHomeStage",
+    "Rotation": 0,
+    "Offset" : {
+      "X": 16650,
+      "Y": 14250
+    },
+    "Scale": 17.077,
+    "SubAreas": []
+  },
+  {
+    "KingdomName": "Seaside Kingdom",
+    "MainStageName": "SeaWorldHomeStage",
+    "Rotation": 0,
+    "Offset" : {
+      "X": 29900,
+      "Y": 48200
+    },
+    "Scale": 29.128,
+    "SubAreas": []
+  },
+  {
+    "KingdomName": "Luncheon Kingdom",
+    "MainStageName": "LavaWorldHomeStage",
+    "Rotation": 0.5,
+    "Offset" : {
+      "X": 26100,
+      "Y": 28500
+    },
+    "Scale": 28.205,
+    "SubAreas": []
+  },
+  {
+    "KingdomName": "Ruined Kingdom",
+    "MainStageName": "BossRaidWorldHomeStage",
+    "Rotation": 0,
+    "Offset" : {
+      "X": 26300,
+      "Y": 10800
+    },
+    "Scale": 32.472,
+    "SubAreas": []
+  },
+  {
+    "KingdomName": "Bowser's Kingdom",
+    "MainStageName": "SkyWorldHomeStage",
+    "Rotation": 0,
+    "Offset" : {
+      "X": 88500,
+      "Y": 97200
+    },
+    "Scale": 77.87175,
+    "SubAreas": []
+  },
+  {
+    "KingdomName": "Moon Kingdom",
+    "MainStageName": "MoonWorldHomeStage",
+    "Rotation": 0,
+    "Offset" : {
+      "X": 49400,
+      "Y": 46800
+    },
+    "Scale": 45.718,
+    "SubAreas": []
+  },
+  {
+    "KingdomName": "Dark Side",
+    "MainStageName": "Special1WorldHomeStage",
+    "Rotation": 0,
+    "Offset" : {
+      "X": 36300,
+      "Y": 30000
+    },
+    "Scale": 29.256,
+    "SubAreas": []
+  },
+  {
+    "KingdomName": "Darker Side",
+    "MainStageName": "Special2WorldHomeStage",
+    "Rotation": 0,
+    "Offset" : {
+      "X": 35750,
+      "Y": 67650
+    },
+    "Scale": 39.031,
+    "SubAreas": []
+  },
+  {
+    "KingdomName": "Mushroom Kingdom",
+    "MainStageName": "PeachWorldHomeStage",
+    "Rotation": 0,
+    "Offset" : {
+      "X": 32300,
+      "Y": 32100
+    },
+    "Scale": 29.231,
+    "SubAreas": []
+  }
+]

@@ -1,0 +1,71 @@
+﻿@page "/login"
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Authentication
+@using Microsoft.AspNetCore.Authentication.Cookies
+@using OdysseyWebServer.Models.ViewModels
+@inject NavigationManager Navigation
+
+<PageTitle>Login - @Configuration.ServerName</PageTitle>
+
+<div class="row">
+    <div class="col-lg-4 offset-lg-4 pt-4 pb-4 border">
+        <EditForm Model="@Model" OnValidSubmit="Authenticate" FormName="LoginForm">
+            <DataAnnotationsValidator />
+            <div class="mb-3 text-center flex-column">
+                <h3>Login</h3>
+            </div>
+            <div class="mb-3">
+                <label>User Name</label>
+                <InputText @bind-Value="Model.Username" placeholder="username" class="form-control"/>
+                <ValidationMessage For="() => Model.Username"></ValidationMessage>
+            </div>
+            <div class="mb-3">
+                <label>Password</label>
+                <InputText @bind-Value="Model.Password" placeholder="password" class="form-control"/>
+                <ValidationMessage For="() => Model.Password"></ValidationMessage>
+            </div>
+            <div class="mb-3 text-center"><span class="text-danger">@_errorMessage</span></div>
+            <div class="mb-3 d-grid gap-2">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    [CascadingParameter]
+    public HttpContext? HttpContext { get; set; }
+    
+    [SupplyParameterFromForm] public LoginViewModel Model { get; set; } = new();
+    private string? _errorMessage;
+    
+    private string? ReturnUrl { get; set; }
+    
+    protected override void OnInitialized()
+    {
+        var uri = Navigation.Uri;
+        var queryParams = Microsoft.AspNetCore.WebUtilities.QueryHelpers.ParseQuery(new Uri(uri).Query);
+
+        ReturnUrl = queryParams.TryGetValue("ReturnUrl", out var returnUrl) ? returnUrl.ToString() : "/";
+    }
+    
+    private async Task Authenticate()
+    {
+        if (Model.Username != Configuration.UserName || Model.Password != Configuration.Password)
+        {
+            _errorMessage = "Invalid User Name or Password";
+            return;
+        }
+
+        var claims = new List<Claim>
+        {
+            new (ClaimTypes.Name, Configuration.UserName),
+            new (ClaimTypes.Role, "Administrator")
+        };
+
+        var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+        var principal = new ClaimsPrincipal(identity);
+        await HttpContext!.SignInAsync(principal);
+        Navigation.NavigateTo(ReturnUrl ?? "/");
+    }
+}

@@ -1,0 +1,58 @@
+﻿@page "/console"
+@using Microsoft.AspNetCore.Authorization
+@using OdysseyWebServer.ServerCommunication
+@rendermode InteractiveServer
+@attribute [Authorize(Roles = "Administrator")]
+
+
+<PageTitle>Console - @Configuration.ServerName</PageTitle>
+<h3>Console</h3>
+
+<div class="console">
+    <div class="console-output">
+        @foreach (var line in _output)
+        {
+            <div>> @line</div>
+        }
+    </div>
+
+    <div class="console-input-container">
+        <input @bind="_inputText" @bind:event="oninput"
+               @onkeydown="HandleKeyPress"
+               class="m-2" placeholder="Enter a Command ..." />
+
+        <button @onclick="ClearConsole" class="btn-primary">Clear</button>
+    </div>
+</div>
+
+@code {
+    private string _inputText = "";
+    private readonly List<string> _output = [];
+
+    private void ExecuteCommand(string command)
+    {
+        InvokeAsync(async () =>
+        {
+            _output.Add($"{command}");
+
+            var response = await RequestHandler.ExecuteCommand(command);
+            _output.AddRange(response);
+            _inputText = "";
+            
+            StateHasChanged();
+        });
+    }
+
+    private void ClearConsole()
+    {
+        _output.Clear();
+    }
+
+    private void HandleKeyPress(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter" && !string.IsNullOrWhiteSpace(_inputText))
+        {
+            ExecuteCommand(_inputText);
+        }
+    }
+}
