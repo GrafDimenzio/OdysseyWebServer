@@ -7,14 +7,6 @@ using OdysseyWebServer.ServerCommunication;
 var builder = WebApplication.CreateBuilder(args);
 
 Configuration.LoadConfig(builder.Configuration);
-if (string.IsNullOrEmpty(Configuration.Server))
-{
-    Console.WriteLine("Please configure a hostname or ip that connects to a SMOO Server and restart the application.");
-    while (true)
-    {
-        Thread.Sleep(10000);
-    }
-}
 
 Console.WriteLine($"Trying to establish communication with Super Mario Odyssey Online Server: {Configuration.Server}:{Configuration.Port}");
 Cache.Initialize().GetAwaiter().GetResult();

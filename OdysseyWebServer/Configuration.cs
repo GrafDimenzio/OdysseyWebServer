@@ -17,60 +17,84 @@ public static class Configuration
     public static string UserName { get; set; } = "";
     public static string Password { get; set; } = "";
 
+    public static readonly IReadOnlyList<ConfigSetter> Configs = new List<ConfigSetter>()
+    {
+        new("token", nameof(Token), null, ""),
+        new("server", nameof(Server), null, ""),
+        new("port", nameof(Port), ParseInt, 1027),
+
+        new("updateFrequency", nameof(UpdateFrequency), ParseInt, 100),
+        new("updateFlippedPlayers", nameof(UpdateFlippedPlayersFrequency), ParseInt, -1),
+        new("onlyRequestWhenNecessary", nameof(OnlyRequestWhenNecessary), ParseBool, true),
+
+        new("serverName", nameof(ServerName), null, "Odyssey Server"),
+        new("accountName", nameof(UserName), null, "admin"),
+        new("accountPassword", nameof(Password), null, "admin"),
+    };
+
     public static void LoadConfig(ConfigurationManager manager)
     {
-        var settingsPath = File.Exists("/.dockerenv") ? "/data/settings.json" : null;
-        
-        if (!string.IsNullOrWhiteSpace(settingsPath))
+        foreach (var config in Configs)
+        {
+            var value = manager[config.ConfigName];
+            if (value == null) continue;
+            config.SetConfig(value);
+        }
+
+        var settingsPath = GetSettingsPath();
+        if (settingsPath != null)
         {
             if (!File.Exists(settingsPath))
             {
                 GenerateSettingsFile(settingsPath);
-                Console.WriteLine($"Settings was generated in {settingsPath}.\nPlease configure a proper server ip/domain and restart the application.");
-                while (true)
-                {
-                    Thread.Sleep(10000);
-                }
-                return;
             }
             var json = File.ReadAllText(settingsPath);
             var jObject = JObject.Parse(json);
             
-            Token = jObject["token"]?.ToString() ?? "";
-            Server = jObject["server"]?.ToString() ?? "";
-            
-            Port = ParseInt(jObject["port"]?.ToString(), 1027);
-            UpdateFrequency = ParseInt(jObject["updateFrequency"]?.ToString(), 100);
-            UpdateFlippedPlayersFrequency = ParseInt(jObject["updateFlippedPlayers"]?.ToString(), -1);
-            OnlyRequestWhenNecessary = ParseBool(jObject["onlyRequestWhenNecessary"]?.ToString(), true);
-            
-            ServerName = jObject["serverName"]?.ToString() ?? "";
-            UserName = manager["accountName"] ?? "admin";
-            Password = manager["accountPassword"] ?? "admin";
-            return;
+            foreach (var config in Configs)
+            {
+                var value = jObject[config.ConfigName]?.ToString();
+                if (value == null) continue;
+                config.SetConfig(value);
+            }
         }
         
-        Token = manager["Token"] ?? "";
-        Server = manager["Server"] ?? "";
-        Port = ParseInt(manager["Port"], 1027);
-        UpdateFrequency = ParseInt(manager["UpdateFrequency"], 100);
-        UpdateFlippedPlayersFrequency = ParseInt(manager["UpdateFlippedPlayersFrequency"], -1);
-        OnlyRequestWhenNecessary = ParseBool(manager["OnlyRequestWhenNecessary"], true);
-        ServerName = manager["ServerName"] ?? "Odyssey Online";
-        UserName = manager["AccountName"] ?? "admin";
-        Password = manager["AccountPassword"] ?? "admin";
+        foreach (var config in Configs)
+        {
+            var value = Environment.GetEnvironmentVariable(config.ConfigName.ToUpper());
+            if (value == null) continue;
+            config.SetConfig(value);
+        }
+
+        if (!string.IsNullOrWhiteSpace(Server) && Port >= 0) return;
+        
+        Console.WriteLine($"You need to configure a proper Host/IP and Port. Please check your configuration and restart the application. Current Configuration:{Server}:{Port}");
+        while (true)
+        {
+            Thread.Sleep(1000);
+        }
     }
 
-    private static int ParseInt(string? input, int defaultValue)
+    private static object ParseInt(string input, object defaultValue)
     {
         return int.TryParse(input, out var result) ? result : defaultValue;
     }
-
-    private static bool ParseBool(string? input, bool defaultValue)
+    
+    private static object ParseBool(string input, object defaultValue)
     {
         return bool.TryParse(input, out var result) ? result : defaultValue;
     }
 
+    private static string? GetSettingsPath()
+    {
+        if (File.Exists("/.dockerenv"))
+        {
+            return "/data/settings.json";
+        }
+        
+        return File.Exists("settings.json") ? "settings.json" : null;
+    }
+    
     private static void GenerateSettingsFile(string file)
     {
         var jObject = new JObject()
@@ -87,5 +111,16 @@ public static class Configuration
         };
         File.Create(file).Close();
         File.WriteAllText(file, jObject.ToString());
+    }
+
+    public class ConfigSetter(string configName, string propertyName, Func<string,object,object>? parser, object defaultValue)
+    {
+        public string ConfigName => configName;
+        
+        public void SetConfig(string value)
+        {
+            var finalValue = parser?.Invoke(value, defaultValue) ?? value;
+            typeof(Configuration).GetProperty(propertyName)?.SetValue(this, finalValue);
+        }
     }
 }
