@@ -143,6 +143,13 @@
         }
       },
       {
+        "SubAreaName": "SandWorldVibrationStage",
+        "Position": {
+          "X": 19150,
+          "Y": -10605
+        }
+      },
+      {
         "SubAreaName": "SandWorldRotateExStage",
         "Position": {
           "X": 18955,
@@ -154,6 +161,13 @@
         "Position": {
           "X": 3200,
           "Y": -11915
+        }
+      },
+      {
+        "SubAreaName": "WaterTubeExStage",
+        "Position": {
+          "X": -21895,
+          "Y": -35745
         }
       },
       {
@@ -277,7 +291,106 @@
       "Y": 34500
     },
     "Scale": 26.923,
-    "SubAreas": []
+    "SubAreas": [
+      {
+        "SubAreaName": "ForestWorldCloudBonusExStage",
+        "Position": {
+          "X": 4280,
+          "Y": -5105
+        }
+      },
+      {
+        "SubAreaName": "AnimalChaseExStage",
+        "Position": {
+          "X": -6635,
+          "Y": -65
+        }
+      },
+      {
+        "SubAreaName": "FogMountainExStage",
+        "Position": {
+          "X": -10600,
+          "Y": -7710
+        }
+      },
+      {
+        "SubAreaName": "ForestWorldBossStage",
+        "Position": {
+          "X": 3630,
+          "Y": -22470
+        }
+      },
+      {
+        "SubAreaName": "ForestWorldWoodsStage",
+        "Position": {
+          "X": 21360,
+          "Y": 15990
+        }
+      },
+      {
+        "SubAreaName": "ForestWorldWoodsTreasureStage",
+        "Position": {
+          "X": 21360,
+          "Y": 15990
+        }
+      },
+      {
+        "SubAreaName": "ForestWorldWoodsCostumeStage",
+        "Position": {
+          "X": 21360,
+          "Y": 15990
+        }
+      },
+      {
+        "SubAreaName": "RailCollisionExStage",
+        "Position": {
+          "X": 5705,
+          "Y": -5325
+        }
+      },
+      {
+        "SubAreaName": "ForestWorldWaterExStage",
+        "Position": {
+          "X": -3805,
+          "Y": -10900
+        }
+      },
+      {
+        "SubAreaName": "ForestWorldBonusStage",
+        "Position": {
+          "X": 0,
+          "Y": 0
+        }
+      },
+      {
+        "SubAreaName": "PackunPoisonExStage",
+        "Position": {
+          "X": 3100,
+          "Y": -16605
+        }
+      },
+      {
+        "SubAreaName": "ShootingElevatorExStage",
+        "Position": {
+          "X": 6960,
+          "Y": -4845
+        }
+      },
+      {
+        "SubAreaName": "ForestWorldTowerStage",
+        "Position": {
+          "X": -5390,
+          "Y": -21940
+        }
+      },
+      {
+        "SubAreaName": "KillerRoadExStage",
+        "Position": {
+          "X": -580,
+          "Y": -11480
+        }
+      }
+    ]
   },
   {
     "KingdomName": "Cloud Kingdom",
@@ -288,7 +401,22 @@
       "Y": 18600
     },
     "Scale": 16.128,
-    "SubAreas": []
+    "SubAreas": [
+      {
+        "SubAreaName": "Cube2DExStage",
+        "Position": {
+          "X": -3195,
+          "Y": 3210
+        }
+      },
+      {
+        "SubAreaName": "FukuwaraiKuriboStage",
+        "Position": {
+          "X": -10,
+          "Y": 30
+        }
+      }
+    ]
   },
   {
     "KingdomName": "Lost Kingdom",
@@ -299,7 +427,29 @@
       "Y": 13350
     },
     "Scale": 16.641,
-    "SubAreas": []
+    "SubAreas": [
+      {
+        "SubAreaName": "ClashWorldShopStage",
+        "Position": {
+          "X": -2970,
+          "Y": 3520
+        }
+      },
+      {
+        "SubAreaName": "JangoExStage",
+        "Position": {
+          "X": -1185,
+          "Y": 3065
+        }
+      },
+      {
+        "SubAreaName": "ImomuPoisonExStage",
+        "Position": {
+          "X": 6600,
+          "Y": 9000
+        }
+      }
+    ]
   },
   {
     "KingdomName": "Metro Kingdom",
@@ -310,7 +460,127 @@
       "Y": 19800
     },
     "Scale": 22.334,
-    "SubAreas": []
+    "SubAreas": [
+      {
+        "SubAreaName": "BikeSteelExStage",
+        "Position": {
+          "X": -3050,
+          "Y": -200
+        }
+      },
+      {
+        "SubAreaName": "CityWorldFactoryStage",
+        "Position": {
+          "X": -6900,
+          "Y": -7420
+        }
+      },
+      {
+        "SubAreaName": "CapRotatePackunExStage",
+        "Position": {
+          "X": -6500,
+          "Y": 5205
+        }
+      },
+      {
+        "SubAreaName": "CityPeopleRoadStage",
+        "Position": {
+          "X": -7415,
+          "Y": -10865
+        }
+      },
+      {
+        "SubAreaName": "ShootingCityExStage",
+        "Position": {
+          "X": 400,
+          "Y": 1650
+        }
+      },
+      {
+        "SubAreaName": "PoleGrabCeilExStage",
+        "Position": {
+          "X": -17350,
+          "Y": -11850
+        }
+      },
+      {
+        "SubAreaName": "Theater2DExStage",
+        "Position": {
+          "X": -6145,
+          "Y": -5505
+        }
+      },
+      {
+        "SubAreaName": "DonsukeExStage",
+        "Position": {
+          "X": 1960,
+          "Y": -13050
+        }
+      },
+      {
+        "SubAreaName": "CityWorldMainTowerStage",
+        "Position": {
+          "X": 20,
+          "Y": -10620
+        }
+      },
+      {
+        "SubAreaName": "CityWorldShop01Stage",
+        "Position": {
+          "X": -3310,
+          "Y": 4465
+        }
+      },
+      {
+        "SubAreaName": "Note2D3DRoomExStage",
+        "Position": {
+          "X": -1760,
+          "Y": 1255
+        }
+      },
+      {
+        "SubAreaName": "PoleKillerExStage",
+        "Position": {
+          "X": 4900,
+          "Y": -470
+        }
+      },
+      {
+        "SubAreaName": "RadioControlExStage",
+        "Position": {
+          "X": -4140,
+          "Y": 7735
+        }
+      },
+      {
+        "SubAreaName": "SwingSteelExStage",
+        "Position": {
+          "X": 2950,
+          "Y": -2100
+        }
+      },
+      {
+        "SubAreaName": "ElectricWireExStage",
+        "Position": {
+          "X": -5270,
+          "Y": -10295
+        }
+      },
+      {
+        "SubAreaName": "CityWorldSandSlotStage",
+        "Position": {
+          "X": -7855,
+          "Y": -3995
+        }
+      },
+      {
+        "SubAreaName": "TrexBikeExStage",
+        "Position": {
+          "X": -4070,
+          "Y": -6135
+        }
+      }
+    ]
   },
   {
     "KingdomName": "Snow Kingdom",
@@ -332,7 +602,78 @@
       "Y": 48200
     },
     "Scale": 29.128,
-    "SubAreas": []
+    "SubAreas": [
+      {
+        "SubAreaName": "CloudExStage",
+        "Position": {
+          "X": -11800,
+          "Y": -2300
+        }
+      },
+      {
+        "SubAreaName": "SeaWorldCostumeStage",
+        "Position": {
+          "X": -15000,
+          "Y": -2330
+        }
+      },
+      {
+        "SubAreaName": "ReflectBombExStage",
+        "Position": {
+          "X": 15500,
+          "Y": -12300
+        }
+      },
+      {
+        "SubAreaName": "SenobiTowerExStage",
+        "Position": {
+          "X": 14460,
+          "Y": -25275
+        }
+      },
+      {
+        "SubAreaName": "SeaWorldSneakingManStage",
+        "Position": {
+          "X": -18200,
+          "Y": -24900
+        }
+      },
+      {
+        "SubAreaName": "SeaWorldSecretStage",
+        "Position": {
+          "X": 630,
+          "Y": -32225
+        }
+      },
+      {
+        "SubAreaName": "TogezoRotateExStage",
+        "Position": {
+          "X": -20950,
+          "Y": -24450
+        }
+      },
+      {
+        "SubAreaName": "SeaWorldVibrationStage",
+        "Position": {
+          "X": -2887,
+          "Y": 987
+        }
+      },
+      {
+        "SubAreaName": "SeaWorldUtsuboCaveStage",
+        "Position": {
+          "X": -16085,
+          "Y": -30345
+        }
+      },
+      {
+        "SubAreaName": "WaterValleyExStage",
+        "Position": {
+          "X": -20400,
+          "Y": 800
+        }
+      }
+    ]
   },
   {
     "KingdomName": "Luncheon Kingdom",
@@ -354,7 +695,22 @@
       "Y": 10800
     },
     "Scale": 32.472,
-    "SubAreas": []
+    "SubAreas": [
+      {
+        "SubAreaName": "DotTowerExStage",
+        "Position": {
+          "X": -2850,
+          "Y": 1100
+        }
+      },
+      {
+        "SubAreaName": "BullRunExStage",
+        "Position": {
+          "X": 13500,
+          "Y": 49300
+        }
+      }
+    ]
   },
   {
     "KingdomName": "Bowser's Kingdom",
@@ -365,7 +721,64 @@
       "Y": 97200
     },
     "Scale": 77.87175,
-    "SubAreas": []
+    "SubAreas": [
+      {
+        "SubAreaName": "SkyWorldCostumeStage",
+        "Position": {
+          "X": -29152,
+          "Y": -32930
+        }
+      },
+      {
+        "SubAreaName": "SkyWorldCloudBonusExStage",
+        "Position": {
+          "X": 19264,
+          "Y": -61065
+        }
+      },
+      {
+        "SubAreaName": "JizoSwitchExStage",
+        "Position": {
+          "X": 47095,
+          "Y": -81330
+        }
+      },
+      {
+        "SubAreaName": "KaronWingTowerStage",
+        "Position": {
+          "X": 6116,
+          "Y": -61875
+        }
+      },
+      {
+        "SubAreaName": "SkyWorldShopStage",
+        "Position": {
+          "X": -29150,
+          "Y": -31960
+        }
+      },
+      {
+        "SubAreaName": "SkyWorldTreasureStage",
+        "Position": {
+          "X": 25845,
+          "Y": -53400
+        }
+      },
+      {
+        "SubAreaName": "TsukkunRotateExStage",
+        "Position": {
+          "X": 20608,
+          "Y": -60004
+        }
+      },
+      {
+        "SubAreaName": "TsukkunClimbExStage",
+        "Position": {
+          "X": 32889,
+          "Y": -35076
+        }
+      }
+    ]
   },
   {
     "KingdomName": "Moon Kingdom",
@@ -376,7 +789,50 @@
       "Y": 46800
     },
     "Scale": 45.718,
-    "SubAreas": []
+    "SubAreas": [
+      {
+        "SubAreaName": "MoonAthleticExStage",
+        "Position": {
+          "X": -250,
+          "Y": 33600
+        }
+      },
+      {
+        "SubAreaName": "Galaxy2DExStage",
+        "Position": {
+          "X": 17850,
+          "Y": 34000
+        }
+      },
+      {
+        "SubAreaName": "MoonWorldWeddingRoomStage",
+        "Position": {
+          "X": -9290,
+          "Y": -30735
+        }
+      },
+      {
+        "SubAreaName": "MoonWorldCaptureParadeStage",
+        "Position": {
+          "X": -5355,
+          "Y": -12938
+        }
+      },
+      {
+        "SubAreaName": "MoonWorldSphinxRoom",
+        "Position": {
+          "X": -6400,
+          "Y": -15395
+        }
+      },
+      {
+        "SubAreaName": "MoonWorldShopRoom",
+        "Position": {
+          "X": 7520,
+          "Y": 30000
+        }
+      }
+    ]
   },
   {
     "KingdomName": "Dark Side",
@@ -387,7 +843,15 @@
       "Y": 30000
     },
     "Scale": 29.256,
-    "SubAreas": []
+    "SubAreas": [
+      {
+        "SubAreaName": "",
+        "Position": {
+          "X": 0,
+          "Y": 0
+        }
+      }
+    ]
   },
   {
     "KingdomName": "Darker Side",
@@ -398,7 +862,29 @@
       "Y": 67650
     },
     "Scale": 39.031,
-    "SubAreas": []
+    "SubAreas": [
+      {
+        "SubAreaName": "Special2WorldLavaStage",
+        "Position": {
+          "X": 6450,
+          "Y": -7260
+        }
+      },
+      {
+        "SubAreaName": "Special2WorldKoopaStage",
+        "Position": {
+          "X": 6450,
+          "Y": -7260
+        }
+      },
+      {
+        "SubAreaName": "Special2WorldCloudStage",
+        "Position": {
+          "X": 6450,
+          "Y": -7260
+        }
+      }
+    ]
   },
   {
     "KingdomName": "Mushroom Kingdom",
