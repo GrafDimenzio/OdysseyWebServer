@@ -1,4 +1,5 @@
 ﻿@page "/player/{PlayerId}"
+@page "/player"
 @implements IDisposable
 @using Microsoft.AspNetCore.Authorization
 @using OdysseyWebServer.Helper
@@ -10,12 +11,28 @@
 
 @if (_player == null)
 {
-    <p>Loading Player Data</p>
+    @if (string.IsNullOrEmpty(PlayerId))
+    {
+        <div>
+            <label>Invalid Request. You need to specify a player</label>
+        </div>
+    }
+    else
+    {
+        <div>
+            <label>No Player Data was found yet for @PlayerId</label>
+            <div class="row justify-content-center">
+                <div class="col-1">
+                    <div class=" spinner-border ms-3"></div>
+                </div>
+            </div>
+        </div>
+    }
 }
 else
 {
     <div class="row">
-        <div class="col-md-6 p-3 border">
+        <div class="col-md-5 p-3">
             <h4>@_player.Name</h4>
             <p>
 
@@ -51,40 +68,41 @@ else
                 <br/>
                 Is2D: @_player.Is2D
             </p>
-            
-            <label>
-                <input type="checkbox" @bind="Flip"/> Flip
-            </label>
+    
+            <label>Capture: </label>
+            <br/>
+            @if (!string.IsNullOrEmpty(_player.Capture))
+            {
+                <img src="@($"images/capture/{_player.Capture}.png")" alt="@_player.Capture" width="100" height="100"/>
+            }
+            else
+            {
+                <label>None</label>
+            }
         </div>
 
-        <div class="col-md-6 p-3 border">
-            <h4>Map</h4>
-            <div style="height: 512px">
+        <div class="col-md-7 p-3">
+            <div class="btn-group">
+                <button @onclick="OnRejoin" class="btn btn-outline-primary">Rejoin</button>
+                <button @onclick="OnCrash" class="btn btn-outline-danger">Crash</button>
+                <button @onclick="OnBan" class="btn btn-outline-danger">Ban</button>
+            </div>
+            <label class="ms-2">
+                <input type="checkbox" @bind="Flip"/> Flip
+            </label>
+            <div class="mt-1" style="height: 512px">
                 <MapComponent @ref="_mapComponent" Kingdom="@_player.Kingdom"/>
             </div>
         </div>
     </div>
     
-    <div class="row">
-        <div class="col-md-6 p-3 border">
-            <h4>Capture</h4>
-            @if (!string.IsNullOrEmpty(_player.Capture))
-            {
-                <img  src="@($"images/capture/{_player.Capture}.png")" alt="@_player.Capture" width="100" height="100"/>
-            }
+    @if (!string.IsNullOrEmpty(NotificationMessage))
+    {
+        <div class="alert alert-info text-center">
+            <strong>Server:</strong>
+            @NotificationMessage
         </div>
-        
-        <div class="col-md-6 p-3 border">
-            <h4>Commands</h4>
-            <div style="display: flex; align-items: center; gap: 10px;">
-                <button @onclick="OnRejoin" class="btn-primary">Rejoin</button>
-                <button @onclick="OnBan" class="btn-primary">Ban</button>
-                <button @onclick="OnCrash" class="btn-primary">Crash</button>
-            </div>
-        </div>
-    </div>
-    
-    <div class="text-center">@NotificationMessage</div>
+    }
 }
 
 @code {
@@ -169,7 +187,7 @@ else
         StateHasChanged();
 
         _timeState++;
-        await Task.Delay(3000);
+        await Task.Delay(6000);
         _timeState--;
         if (_timeState > 0) return;
         NotificationMessage = null;

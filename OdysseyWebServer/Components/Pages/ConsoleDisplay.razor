@@ -6,10 +6,10 @@
 
 
 <PageTitle>Console - @Configuration.ServerName</PageTitle>
-<h3>Console</h3>
 
-<div class="console">
-    <div class="console-output">
+<div>
+    <h3>Console</h3>
+    <div>
         @foreach (var line in _output)
         {
             <div>> @line</div>
@@ -19,9 +19,9 @@
     <div class="console-input-container">
         <input @bind="_inputText" @bind:event="oninput"
                @onkeydown="HandleKeyPress"
-               class="m-2" placeholder="Enter a Command ..." />
+               class="m-2" placeholder="Enter a Command ..."/>
 
-        <button @onclick="ClearConsole" class="btn-primary">Clear</button>
+        <button @onclick="ClearConsole" class="btn btn-sm btn-outline-primary">Clear</button>
     </div>
 </div>
 

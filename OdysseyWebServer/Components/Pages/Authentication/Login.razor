@@ -15,12 +15,12 @@
                 <h3>Login</h3>
             </div>
             <div class="mb-3">
-                <label>User Name</label>
+                <label class="form-label">User Name</label>
                 <InputText @bind-Value="Model.Username" placeholder="username" class="form-control"/>
                 <ValidationMessage For="() => Model.Username"></ValidationMessage>
             </div>
             <div class="mb-3">
-                <label>Password</label>
+                <label class="form-label">Password</label>
                 <InputText @bind-Value="Model.Password" placeholder="password" class="form-control"/>
                 <ValidationMessage For="() => Model.Password"></ValidationMessage>
             </div>
@@ -39,16 +39,6 @@
     [SupplyParameterFromForm] public LoginViewModel Model { get; set; } = new();
     private string? _errorMessage;
     
-    private string? ReturnUrl { get; set; }
-    
-    protected override void OnInitialized()
-    {
-        var uri = Navigation.Uri;
-        var queryParams = Microsoft.AspNetCore.WebUtilities.QueryHelpers.ParseQuery(new Uri(uri).Query);
-
-        ReturnUrl = queryParams.TryGetValue("ReturnUrl", out var returnUrl) ? returnUrl.ToString() : "/";
-    }
-    
     private async Task Authenticate()
     {
         if (Model.Username != Configuration.UserName || Model.Password != Configuration.Password)
@@ -66,6 +56,6 @@
         var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
         var principal = new ClaimsPrincipal(identity);
         await HttpContext!.SignInAsync(principal);
-        Navigation.NavigateTo(ReturnUrl ?? "/");
+        Navigation.NavigateTo("/dashboard");
     }
 }

@@ -684,7 +684,92 @@
       "Y": 28500
     },
     "Scale": 28.205,
-    "SubAreas": []
+    "SubAreas": [
+      {
+        "SubAreaName": "LavaWorldExcavationExStage",
+        "Position": {
+          "X": -5035,
+          "Y": -8590
+        }
+      },
+      {
+        "SubAreaName": "LavaWorldClockExStage",
+        "Position": {
+          "X": -19480,
+          "Y": -12200
+        }
+      },
+      {
+        "SubAreaName": "LavaBonus1Zone",
+        "Position": {
+          "X": -3904,
+          "Y": 10153
+        }
+      },
+      {
+        "SubAreaName": "LavaWorldCostumeStage",
+        "Position": {
+          "X": -3370,
+          "Y": 5100
+        }
+      },
+      {
+        "SubAreaName": "LavaWorldFenceLiftExStage",
+        "Position": {
+          "X": 18850,
+          "Y": 5200
+        }
+      },
+      {
+        "SubAreaName": "CapAppearLavaLiftExStage",
+        "Position": {
+          "X": -3450,
+          "Y": 17700
+        }
+      },
+      {
+        "SubAreaName": "GabuzouClockExStage",
+        "Position": {
+          "X": -17350,
+          "Y": -2750
+        }
+      },
+      {
+        "SubAreaName": "ForkExStage",
+        "Position": {
+          "X": 465,
+          "Y": -5535
+        }
+      },
+      {
+        "SubAreaName": "LavaWorldBubbleLaneExStage",
+        "Position": {
+          "X": -16400,
+          "Y": -3725
+        }
+      },
+      {
+        "SubAreaName": "LavaWorldShopStage",
+        "Position": {
+          "X": -3370,
+          "Y": 3700
+        }
+      },
+      {
+        "SubAreaName": "LavaWorldTreasureStage",
+        "Position": {
+          "X": -11500,
+          "Y": -4155
+        }
+      },
+      {
+        "SubAreaName": "LavaWorldUpDownExStage",
+        "Position": {
+          "X": 6400,
+          "Y": 9415
+        }
+      }
+    ]
   },
   {
     "KingdomName": "Ruined Kingdom",
@@ -812,6 +897,34 @@
         }
       },
       {
+        "SubAreaName": "MoonWorldWeddingRoom2Stage",
+        "Position": {
+          "X": -9290,
+          "Y": -30735
+        }
+      },
+      {
+        "SubAreaName": "MoonWorldKoopa1Stage",
+        "Position": {
+          "X": -9290,
+          "Y": -30735
+        }
+      },
+      {
+        "SubAreaName": "MoonWorldKoopa2Stage",
+        "Position": {
+          "X": -9290,
+          "Y": -30735
+        }
+      },
+      {
+        "SubAreaName": "MoonWorldBasementStage",
+        "Position": {
+          "X": -9290,
+          "Y": -30735
+        }
+      },
+      {
         "SubAreaName": "MoonWorldCaptureParadeStage",
         "Position": {
           "X": -5355,
@@ -895,6 +1008,133 @@
       "Y": 32100
     },
     "Scale": 29.231,
-    "SubAreas": []
+    "SubAreas": [
+      {
+        "SubAreaName": "PeachWorldCostumeStage",
+        "Position": {
+          "X": 0,
+          "Y": 0
+        }
+      },
+      {
+        "SubAreaName": "PeachWorldCastleStage",
+        "Position": {
+          "X": 0,
+          "Y": 0
+        }
+      },
+      {
+        "SubAreaName": "DotHardExStage",
+        "Position": {
+          "X": 0,
+          "Y": 0
+        }
+      },
+      {
+        "SubAreaName": "FukuwaraiMarioStage",
+        "Position": {
+          "X": 0,
+          "Y": 0
+        }
+      },
+      {
+        "SubAreaName": "YoshiCloudExStage",
+        "Position": {
+          "X": 0,
+          "Y": 0
+        }
+      },
+      {
+        "SubAreaName": "PeachWorldPictureGiantWanderBossStage",
+        "Position": {
+          "X": 0,
+          "Y": 0
+        }
+      },
+      {
+        "SubAreaName": "RevengeGiantWanderBossStage",
+        "Position": {
+          "X": 0,
+          "Y": 0
+        }
+      },
+      {
+        "SubAreaName": "PeachWorldPictureBossRaidStage",
+        "Position": {
+          "X": 0,
+          "Y": 0
+        }
+      },
+      {
+        "SubAreaName": "RevengeBossRaidStage",
+        "Position": {
+          "X": 0,
+          "Y": 0
+        }
+      },
+      {
+        "SubAreaName": "PeachWorldPictureBossMagmaStage",
+        "Position": {
+          "X": 0,
+          "Y": 0
+        }
+      },
+      {
+        "SubAreaName": "RevengeBossMagmaStage",
+        "Position": {
+          "X": 0,
+          "Y": 0
+        }
+      },
+      {
+        "SubAreaName": "PeachWorldPictureMofumofuStage",
+        "Position": {
+          "X": 0,
+          "Y": 0
+        }
+      },
+      {
+        "SubAreaName": "RevengeMofumofuStage",
+        "Position": {
+          "X": 0,
+          "Y": 0
+        }
+      },
+      {
+        "SubAreaName": "PeachWorldPictureBossKnuckleStage",
+        "Position": {
+          "X": 0,
+          "Y": 0
+        }
+      },
+      {
+        "SubAreaName": "RevengeBossKnuckleStage",
+        "Position": {
+          "X": 0,
+          "Y": 0
+        }
+      },
+      {
+        "SubAreaName": "PeachWorldPictureBossForestStage",
+        "Position": {
+          "X": 0,
+          "Y": 0
+        }
+      },
+      {
+        "SubAreaName": "RevengeForestBossStage",
+        "Position": {
+          "X": 0,
+          "Y": 0
+        }
+      },
+      {
+        "SubAreaName": "PeachWorldShopStage",
+        "Position": {
+          "X": 0,
+          "Y": 0
+        }
+      }
+    ]
   }
 ]

@@ -3,6 +3,7 @@
 @using Microsoft.AspNetCore.Authorization
 @using OdysseyWebServer.Helper
 @using OdysseyWebServer.ServerCommunication
+@inject NavigationManager Navigation
 @rendermode InteractiveServer
 @attribute [Authorize(Roles = "Administrator")]
 
@@ -16,31 +17,30 @@
 }
 else
 {
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Cap</th>
-            <th>Body</th>
-            <th>Position</th>
-            <th>Map</th>
-            <th>Tagged</th>
-            <th>Capture</th>
-            <th>2D</th>
-            <th>IPv4</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach (var player in _players)
-        {
+    <div class="table-responsive">
+        <table class="table table-striped table-hover table-responsive">
+            <thead>
             <tr>
-                <td><NavLink href="@($"/player/{player.ID}")">@player.Name</NavLink></td>
+                <th>Name</th>
+                <th>Cap</th>
+                <th>Body</th>
+                <th>Position</th>
+                <th>Map</th>
+                <th>Tagged</th>
+                <th>Capture</th>
+                <th>2D</th>
+                <th>IPv4</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var player in _players)
+            {
+            <tr @onclick="() => OnClickEntry(player.ID.ToString())">
+                <td>@player.Name</td>
                 <td><img src="@($"images/cap/{player.Costume.Cap}.png")" alt="@player.Costume.Cap" width="100" height="100"/></td>
                 <td><img src="@($"images/body/{player.Costume.Body}.png")" alt="@player.Costume.Body" width="100" height="100"/></td>
                 <td>
-                    Map Position: @Cache.GetMapPosition(player).ToString()
-                    <br/>
-                    World Position: @player.Position.ToString()
+                    @player.Position.ToString()
                 </td>
                 <td>
                     @player.Kingdom
@@ -53,15 +53,16 @@ else
                 <td>
                     @if (!string.IsNullOrWhiteSpace(player.Capture))
                     {
-                        <img  src="@($"images/capture/{player.Capture}.png")" alt="@player.Capture" width="100" height="100"/>
+                    <img  src="@($"images/capture/{player.Capture}.png")" alt="@player.Capture" width="100" height="100"/>
                     }
                 </td>
                 <td>@player.Is2D</td>
                 <td>@player.IPv4</td>
             </tr>
-        }
-        </tbody>
-    </table>
+            }
+            </tbody>
+        </table>
+    </div>
 }
 
 @code {
@@ -85,5 +86,10 @@ else
     public void Dispose()
     {
         Cache.OnUpdatePlayers -= UpdatePlayers;
+    }
+
+    private void OnClickEntry(string id)
+    {
+        Navigation.NavigateTo($"/player/{id}");
     }
 }
