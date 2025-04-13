@@ -2,6 +2,7 @@
 @using OdysseyWebServer.Helper
 @using OdysseyWebServer.Models.ViewModels
 @using OdysseyWebServer.ServerCommunication
+@using OdysseyWebServer.Components.Components
 @implements IDisposable
 @rendermode InteractiveServer
 
@@ -22,14 +23,31 @@
                     <br/>
                     @if (_players.Count > 0)
                     {
-                    <label>PlayerList:</label>
-                    <div class="list-group list-group-flush">
-                        @foreach (var ply in _players)
-                        {
-                        <a href=@($"/player/{ply.ID.ToString()}") class="list-group-item list-group-item-action">@ply.Name</a>
-                        }
-                    </div>
+                        <label>PlayerList:</label>
+                        <div class="list-group list-group-flush">
+                            @foreach (var ply in _players)
+                            {
+                                <a href=@($"/player/{ply.ID.ToString()}") class="list-group-item list-group-item-action">@ply.Name</a>
+                            }
+                        </div>
+                        <br/>
                     }
+                    <div class="d-flex justify-content-between align-items-center mt-2">
+                        <label>Permissions:</label>
+                        <button data-bs-toggle="collapse" data-bs-target="#permlist" class="btn btn-link p-0 border-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="permlist" class="collapse">
+                        <ul class="list-group list-group-flush mt-1">
+                            @foreach (var perm in Cache.Permissions)
+                            {
+                                <li class="list-group-item border-0">@perm</li>
+                            }
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -155,6 +173,7 @@
 
                 <div class="col pt-2">
                     <label>Flip POV</label>
+
                     <div class="mt-1 d-grid">
                         <div class="btn-group">
                             <button @onclick="OnPovSelf" class="btn btn-outline-secondary">Self</button>
@@ -188,7 +207,7 @@
     <div class="card mt-3">
         <div class="card-body">
             <div class="row">
-                <div class="col p-3">
+                <div class="col p-2">
                     <h4 class="card-title">Send Player</h4>
                     <div class="row">
                         <EditForm Model="_model" FormName="SendPlayerForm" OnValidSubmit="OnSendPlayer">
@@ -242,6 +261,8 @@
         </div>
     </div>
 </div>
+
+<Notification></Notification>
 
 @if (_commandMessage != null)
 {

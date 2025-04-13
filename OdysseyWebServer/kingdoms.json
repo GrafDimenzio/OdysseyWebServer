@@ -591,7 +591,127 @@
       "Y": 14250
     },
     "Scale": 17.077,
-    "SubAreas": []
+    "SubAreas": [
+      {
+        "SubAreaName": "SnowWorldShopStage",
+        "Position": {
+          "X": -950,
+          "Y": 150
+        }
+      },
+      {
+        "SubAreaName": "SnowWorldCostumeStage",
+        "Position": {
+          "X": -950,
+          "Y": 150
+        }
+      },
+      {
+        "SubAreaName": "IceWalkerExStage",
+        "Position": {
+          "X": 6900,
+          "Y": -2750
+        }
+      },
+      {
+        "SubAreaName": "SnowWorldTownStage",
+        "Position": {
+          "X": -950,
+          "Y": 150
+        }
+      },
+      {
+        "SubAreaName": "SnowWorldLobby000Stage",
+        "Position": {
+          "X": -950,
+          "Y": 150
+        }
+      },
+      {
+        "SubAreaName": "SnowWorldLobby001Stage",
+        "Position": {
+          "X": -950,
+          "Y": 150
+        }
+      },
+      {
+        "SubAreaName": "SnowWorldRace000Stage",
+        "Position": {
+          "X": -950,
+          "Y": 150
+        }
+      },
+      {
+        "SubAreaName": "SnowWorldRace001Stage",
+        "Position": {
+          "X": -950,
+          "Y": 150
+        }
+      },
+      {
+        "SubAreaName": "SnowWorldRaceTutorialStage",
+        "Position": {
+          "X": -950,
+          "Y": 150
+        }
+      },
+      {
+        "SubAreaName": "SnowWorldLobbyExStage",
+        "Position": {
+          "X": 10130,
+          "Y": -5990
+        }
+      },
+      {
+        "SubAreaName": "SnowWorldRaceExStage",
+        "Position": {
+          "X": 10130,
+          "Y": -5990
+        }
+      },
+      {
+        "SubAreaName": "SnowWorldRaceHardExStage",
+        "Position": {
+          "X": 10130,
+          "Y": -5990
+        }
+      },
+      {
+        "SubAreaName": "IceWaterDashExStage",
+        "Position": {
+          "X": -5660,
+          "Y": 2200
+        }
+      },
+      {
+        "SubAreaName": "IceWaterBlockExStage",
+        "Position": {
+          "X": 3955,
+          "Y": 4935
+        }
+      },
+      {
+        "SubAreaName": "ByugoPuzzleExStage",
+        "Position": {
+          "X": -3000,
+          "Y": 9690
+        }
+      },
+      {
+        "SubAreaName": "SnowWorldCloudBonusExStage",
+        "Position": {
+          "X": 3100,
+          "Y": 5050
+        }
+      },
+      {
+        "SubAreaName": "KillerRailCollisionExStage",
+        "Position": {
+          "X": 1250,
+          "Y": -3050
+        }
+      }
+    ]
   },
   {
     "KingdomName": "Seaside Kingdom",
@@ -958,10 +1078,73 @@
     "Scale": 29.256,
     "SubAreas": [
       {
-        "SubAreaName": "",
+        "SubAreaName": "Special1WorldTowerStackerStage",
         "Position": {
-          "X": 0,
-          "Y": 0
+          "X": 6560,
+          "Y": -19970
+        }
+      },
+      {
+        "SubAreaName": "Special1WorldTowerBombTailStage",
+        "Position": {
+          "X": 6830,
+          "Y": -19990
+        }
+      },
+      {
+        "SubAreaName": "Special1WorldTowerFireBlowerStage",
+        "Position": {
+          "X": 7200,
+          "Y": -19990
+        }
+      },
+      {
+        "SubAreaName": "Special1WorldTowerCapThrowerStage",
+        "Position": {
+          "X": 7565,
+          "Y": -20010
+        }
+      },
+      {
+        "SubAreaName": "KillerRoadNoCapExStage",
+        "Position": {
+          "X": -21735,
+          "Y": 24990
+        }
+      },
+      {
+        "SubAreaName": "PackunPoisonNoCapExStage",
+        "Position": {
+          "X": 3340,
+          "Y": 5800
+        }
+      },
+      {
+        "SubAreaName": "BikeSteelNoCapExStage",
+        "Position": {
+          "X": 5625,
+          "Y": 1400
+        }
+      },
+      {
+        "SubAreaName": "ShootingCityYoshiExStage",
+        "Position": {
+          "X": 2460,
+          "Y": 5700
+        }
+      },
+      {
+        "SubAreaName": "SenobiTowerYoshiExStage",
+        "Position": {
+          "X": 1750,
+          "Y": 5000
+        }
+      },
+      {
+        "SubAreaName": "LavaWorldUpDownYoshiExStage",
+        "Position": {
+          "X": -450,
+          "Y": 10350
         }
       }
     ]
@@ -1012,127 +1195,127 @@
       {
         "SubAreaName": "PeachWorldCostumeStage",
         "Position": {
-          "X": 0,
-          "Y": 0
+          "X": -1700,
+          "Y": -19080
         }
       },
       {
         "SubAreaName": "PeachWorldCastleStage",
         "Position": {
-          "X": 0,
-          "Y": 0
+          "X": -1700,
+          "Y": -11850
         }
       },
       {
         "SubAreaName": "DotHardExStage",
         "Position": {
-          "X": 0,
-          "Y": 0
+          "X": -11500,
+          "Y": -13200
         }
       },
       {
         "SubAreaName": "FukuwaraiMarioStage",
         "Position": {
-          "X": 0,
-          "Y": 0
+          "X": 7000,
+          "Y": -20750
         }
       },
       {
         "SubAreaName": "YoshiCloudExStage",
         "Position": {
-          "X": 0,
-          "Y": 0
+          "X": 6200,
+          "Y": -9790
         }
       },
       {
         "SubAreaName": "PeachWorldPictureGiantWanderBossStage",
         "Position": {
-          "X": 0,
-          "Y": 0
+          "X": -8250,
+          "Y": 4845
         }
       },
       {
         "SubAreaName": "RevengeGiantWanderBossStage",
         "Position": {
-          "X": 0,
-          "Y": 0
+          "X": -8250,
+          "Y": 4845
         }
       },
       {
         "SubAreaName": "PeachWorldPictureBossRaidStage",
         "Position": {
-          "X": 0,
-          "Y": 0
+          "X": 510,
+          "Y": -13600
         }
       },
       {
         "SubAreaName": "RevengeBossRaidStage",
         "Position": {
-          "X": 0,
-          "Y": 0
+          "X": 510,
+          "Y": -13600
         }
       },
       {
         "SubAreaName": "PeachWorldPictureBossMagmaStage",
         "Position": {
-          "X": 0,
-          "Y": 0
+          "X": -1640,
+          "Y": 9700
         }
       },
       {
         "SubAreaName": "RevengeBossMagmaStage",
         "Position": {
-          "X": 0,
-          "Y": 0
+          "X": -1640,
+          "Y": 9700
         }
       },
       {
         "SubAreaName": "PeachWorldPictureMofumofuStage",
         "Position": {
-          "X": 0,
-          "Y": 0
+          "X": 12725,
+          "Y": -7100
         }
       },
       {
         "SubAreaName": "RevengeMofumofuStage",
         "Position": {
-          "X": 0,
-          "Y": 0
+          "X": 12725,
+          "Y": -7100
         }
       },
       {
         "SubAreaName": "PeachWorldPictureBossKnuckleStage",
         "Position": {
-          "X": 0,
-          "Y": 0
+          "X": -6175,
+          "Y": -3360
         }
       },
       {
         "SubAreaName": "RevengeBossKnuckleStage",
         "Position": {
-          "X": 0,
-          "Y": 0
+          "X": -6175,
+          "Y": -3360
         }
       },
       {
         "SubAreaName": "PeachWorldPictureBossForestStage",
         "Position": {
-          "X": 0,
-          "Y": 0
+          "X": -6100,
+          "Y": -21600
         }
       },
       {
         "SubAreaName": "RevengeForestBossStage",
         "Position": {
-          "X": 0,
-          "Y": 0
+          "X": -6100,
+          "Y": -21600
         }
       },
       {
         "SubAreaName": "PeachWorldShopStage",
         "Position": {
-          "X": 0,
-          "Y": 0
+          "X": 5990,
+          "Y": 810
         }
       }
     ]

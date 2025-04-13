@@ -1,6 +1,7 @@
 ﻿@page "/map"
 @implements IDisposable
 @using Microsoft.AspNetCore.Authorization
+@using OdysseyWebServer.Components.Components
 @using OdysseyWebServer.Helper
 @using OdysseyWebServer.ServerCommunication
 @rendermode InteractiveServer
@@ -27,7 +28,7 @@
 </div>
 
 <div style=@($"height: {(OriginalScale ? "2048" : "1024")}px")>
-    <MapComponent @ref="_mapComponent" Kingdom="@Kingdom" />
+    <OdysseyMap @ref="_mapComponent" Kingdom="@Kingdom" />
 </div>
 
 @code {
@@ -36,7 +37,7 @@
 
     private Vector2 pos = new ();
     
-    private MapComponent? _mapComponent;
+    private OdysseyMap? _mapComponent;
 
     protected override void OnInitialized()
     {

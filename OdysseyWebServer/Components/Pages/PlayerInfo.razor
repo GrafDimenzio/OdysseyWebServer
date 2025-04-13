@@ -2,6 +2,7 @@
 @page "/player"
 @implements IDisposable
 @using Microsoft.AspNetCore.Authorization
+@using OdysseyWebServer.Components.Components
 @using OdysseyWebServer.Helper
 @using OdysseyWebServer.ServerCommunication
 @rendermode InteractiveServer
@@ -91,7 +92,7 @@ else
                 <input type="checkbox" @bind="Flip"/> Flip
             </label>
             <div class="mt-1" style="height: 512px">
-                <MapComponent @ref="_mapComponent" Kingdom="@_player.Kingdom"/>
+                <OdysseyMap @ref="_mapComponent" Kingdom="@_player.Kingdom"/>
             </div>
         </div>
     </div>
@@ -108,7 +109,7 @@ else
 @code {
     [Parameter] public string? PlayerId { get; set; }
     private Player? _player;
-    private MapComponent? _mapComponent;
+    private OdysseyMap? _mapComponent;
 
     private bool _flip;
 
